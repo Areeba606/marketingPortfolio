@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Areeba Tanveer Portfolio</title>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&family=Raleway:wght@300;500;700&display=swap"
+    rel="stylesheet" />
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(270deg, #FBF3B9, #FFDCCC, #fad1ec);
+      background-size: 600% 600%;
+      animation: gradientAnimation 15s ease infinite;
+      color: #333;
+      overflow-x: hidden;
+    }
+
+    @keyframes gradientAnimation {
+      0% {
+        background-position: 0% 50%;
+      }
+
+      50% {
+        background-position: 100% 50%;
+      }
+
+      100% {
+        background-position: 0% 50%;
+      }
+    }
+
+    nav {
+      background: linear-gradient(to bottom, rgba(253, 183, 234, 0.9), rgba(253, 183, 234, 0));
+      backdrop-filter: blur(6px);
+      padding: 20px 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 1000;
+      position: relative;
+    }
+
+    nav .logo {
+      font-size: 24px;
+      font-weight: 700;
+      color: #fff;
+      text-shadow: 0 0 8px #fff;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 20px;
+    }
+
+    nav ul li {
+      position: relative;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: white;
+      font-weight: 500;
+      padding: 8px 14px;
+      border-radius: 20px;
+      transition: all 0.3s ease;
+      position: relative;
+      z-index: 1;
+    }
+
+    nav a:hover {
+      background: #B7B1F2;
+      color: #fff;
+      border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+      transform: scale(1.05);
+    }
+
+    .hamburger {
+      display: none;
+      font-size: 28px;
+      color: white;
+      cursor: pointer;
+      z-index: 1100;
+      position: relative;
+    }
+
+    @media (max-width: 768px) {
+      nav ul {
+        display: none;
+        flex-direction: column;
+        gap: 10px;
+        background: #FDB7EA;
+        padding: 10px 0;
+        position: absolute;
+        top: 60px;
+        right: 20px;
+        width: 150px;
+        border-radius: 8px;
+        z-index: 1050;
+      }
+
+      nav ul.active {
+        display: flex;
+      }
+
+      .hamburger {
+        display: block;
+      }
+    }
+
+    section {
+      padding: 60px 20px;
+      max-width: 1200px;
+      margin: auto;
+      opacity: 0;
+      transform: translateY(50px);
+      transition: all 0.8s ease-out;
+    }
+
+    section.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    h1,
+    h2 {
+      font-family: 'Raleway', sans-serif;
+    }
+
+    /* Home */
+    #home {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      min-height: 80vh;
+      position: relative;
+      z-index: 1;
+    }
+
+    #home .image-placeholder {
+      width: 250px;
+      height: 250px;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+      margin-bottom: 20px;
+      opacity: 0;
+      transform: translateX(-50px);
+      transition: all 0.8s ease-out;
+    }
+
+    #home.show .image-placeholder {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    #home .text {
+      flex: 1;
+      padding-left: 20px;
+      background-color: rgba(255, 255, 255, 0.6);
+      border-radius: 20px;
+      margin: 10px;
+      opacity: 0;
+      transform: translateX(50px);
+      transition: all 0.8s ease-out;
+    }
+
+    #home.show .text {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    #home h1 {
+      font-size: 40px;
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+
+    #home p {
+      font-size: 18px;
+      line-height: 1.6;
+    }
+
+    /* Experience */
+    #experience {
+      text-align: center;
+    }
+
+    .exp-box {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px;
+      margin: 10px 0;
+      gap: 20px;
+      flex-wrap: wrap;
+      opacity: 0;
+      transform: translateX(-50px);
+      transition: all 0.8s ease-out;
+    }
+
+    .exp-box:nth-child(even) {
+      transform: translateX(50px);
+    }
+
+    .exp-box.show {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    .exp-box .exp-logo img {
+      width: 200px;
+      height: auto;
+      object-fit: contain;
+    }
+
+    .exp-box .text-placeholder {
+      flex: 1;
+      text-align: left;
+      background-color: rgba(255, 255, 255, 0.6);
+      padding: 10px;
+      border-radius: 20px;
+    }
+
+    /* Services */
+    #services {
+      text-align: center;
+    }
+
+    .services {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      justify-content: center;
+      text-align: center;
+    }
+
+    .service-box {
+      background: rgba(255, 255, 255, 0.4);
+      padding: 20px;
+      border-radius: 15px;
+      flex: 1 1 300px;
+      min-width: 280px;
+      opacity: 0;
+      transform: translateY(50px);
+      transition: all 0.8s ease-out;
+    }
+
+    .service-box.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Contact */
+    #contact {
+      text-align: center;
+      background: linear-gradient(to right, #FFDCCC, #FBF3B9);
+    }
+
+    #contact h2,
+    #contact p {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: all 0.8s ease-out;
+    }
+
+    #contact.show h2,
+    #contact.show p {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @media (max-width: 768px) {
+      .exp-box {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      .exp-box .text-placeholder {
+        text-align: center;
+      }
+    }
+    .logo-container {
+      width: 100%;
+      overflow: hidden;
+      background: none;
+      padding: 20px 0;
+    }
+
+    .logo-slider {
+      display: flex;
+      gap: 60px;
+      animation: scroll 20s linear infinite;
+    }
+
+    .logo-slider img {
+      height: 80px;
+      object-fit: contain;
+      filter: drop-shadow(0 0 0 transparent);
+    }
+
+    @keyframes scroll {
+      0% {
+        transform: translateX(0);
+      }
+      100% {
+        transform: translateX(-50%);
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <nav>
+    <div class="logo">Areeba Tanveer</div>
+    <div class="hamburger" onclick="toggleMenu()">☰</div>
+    <ul id="nav-links">
+      <li><a href="#home">Home</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#services">Services</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <section id="home">
+    <div class="image-placeholder">
+      <img src="https://ik.imagekit.io/wblb8hxzq/Digital.png" alt="Areeba Tanveer" />
+    </div>
+    <div class="text">
+      <h1><strong>Hi, I am Areeba Tanveer!</strong></h1>
+      <p>I’m a 20-year-old digital marketing & SEO enthusiast with 3+ years of hands-on experience.
+        From boosting rankings to building online brands, I bring creative + strategic skills to the table.
+        Currently juggling my love for marketing while pursuing Software Engineering, because why not mix code with
+        creativity?</p>
+    </div>
+  </section>
+  <div class="logo-container">
+    <div class="logo-slider">
+      <img src="https://zikrainfotech.com/wp-content/uploads/2023/07/zikra-infotech-logo-2-2048x706.png" alt="Zikra Infotech Logo" />
+      <img src="https://premiumworksolution.com/wp-content/uploads/elementor/thumbs/Premium-Work-Solutions-Color-Logo-qx912m5a9prm1itxk8cqotilcwsayid43kwfxuuz9c.webp" alt="Premium Work Solution Logo" />
+      <img src="https://uniqueipsolutions.com/wp-content/uploads/2025/02/cropped-UNIQUE_IP_SOLUTIONS__2_-removebg-preview.png" alt="Unique IP Solutions Logo" />
+      <img src="https://usorganics.store/cdn/shop/files/Untitled-2-removebg-preview.png?v=1746004372&width=120" alt="US Organics Logo" />
+      <img src="https://08kt0t-0y.myshopify.com/cdn/shop/files/WhatsApp_Image_2024-11-01_at_8.12.24_AM_f9002371-e07d-41d2-af87-1235a37919ba.jpg?v=1730629865&width=165" alt="Shopify Logo" />
+      <img src="https://nexus-conference.com/wp-content/uploads/2024/11/nexus-bg.png" alt="nexus-conference" />
+      
+      <!-- Duplicate logos for smooth infinite scrolling -->
+      <img src="https://zikrainfotech.com/wp-content/uploads/2023/07/zikra-infotech-logo-2-2048x706.png" alt="Zikra Infotech Logo" />
+      <img src="https://premiumworksolution.com/wp-content/uploads/elementor/thumbs/Premium-Work-Solutions-Color-Logo-qx912m5a9prm1itxk8cqotilcwsayid43kwfxuuz9c.webp" alt="Premium Work Solution Logo" />
+      <img src="https://uniqueipsolutions.com/wp-content/uploads/2025/02/cropped-UNIQUE_IP_SOLUTIONS__2_-removebg-preview.png" alt="Unique IP Solutions Logo" />
+      <img src="https://usorganics.store/cdn/shop/files/Untitled-2-removebg-preview.png?v=1746004372&width=120" alt="US Organics Logo" />
+      <img src="https://08kt0t-0y.myshopify.com/cdn/shop/files/WhatsApp_Image_2024-11-01_at_8.12.24_AM_f9002371-e07d-41d2-af87-1235a37919ba.jpg?v=1730629865&width=165" alt="Shopify Logo" />
+      <img src="https://nexus-conference.com/wp-content/uploads/2024/11/nexus-bg.png" alt="nexus-conference" />
+    </div>
+  </div>
+  <section id="experience">
+    <h2>Experience</h2>
+    <div class="exp-box">
+      <div class="exp-logo">
+        <img src="https://zikrainfotech.com/wp-content/uploads/2023/07/zikra-infotech-logo-2-2048x706.png"
+          alt="Zikra Logo" />
+      </div>
+      <div class="text-placeholder">
+        <h3>Digital Marketing Associate, Zikra Infotech</h3>
+        <p>At Zikra Infotech, I supported the digital marketing team by managing social media, optimizing Google My
+          Business listings, assisting with SEO, and creating content packets for campaigns. This role sharpened my
+          skills in content strategy, local SEO, and online visibility.</p>
+      </div>
+    </div>
+
+    <div class="exp-box">
+      <div class="exp-logo">
+        <img
+          src="https://uniqueipsolutions.com/wp-content/uploads/2025/02/cropped-UNIQUE_IP_SOLUTIONS__2_-removebg-preview.png"
+          alt="Unique IP Logo" />
+      </div>
+      <div class="text-placeholder">
+        <h3>Digital Marketing & SEO Executive, Unique IP Solutions</h3>
+        <p>At this growing e-commerce startup, I took on a lead role, handling the full digital marketing and SEO
+          strategy. I ran performance-driven ad campaigns focused on sales, managed end-to-end SEO (technical, on-page,
+          and off-page), and helped shape the brand’s online growth over the course of a year.</p>
+      </div>
+    </div>
+
+    <div class="exp-box">
+      <div class="exp-logo">
+        <img
+          src="https://premiumworksolution.com/wp-content/uploads/elementor/thumbs/Premium-Work-Solutions-Color-Logo-qx912m5a9prm1itxk8cqotilcwsayid43kwfxuuz9c.webp"
+          alt="Premium Work Solution Logo" />
+      </div>
+      <div class="text-placeholder">
+        <h3>SEO Specialist & Project Manager, Premium Work Solution</h3>
+        <p>At Premium Work Solution, I worked directly with clients, managing SEO strategies and marketing efforts
+          tailored to their business goals. As a project manager, I led multiple campaigns from planning to execution,
+          ensuring results-driven performance and strong client satisfaction.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="services">
+    <h2>Services</h2>
+    <div class="services">
+      <div class="service-box">
+        <h3>Semantic SEO & Topic Clustering</h3>
+        <p> I optimize websites using intent-based SEO strategies that align with how people actually search today. This
+          includes building topic clusters, smart internal linking, and covering content depth to improve rankings and
+          authority.</p>
+      </div>
+      <div class="service-box">
+        <h3>Content Marketing</h3>
+        <p>I create engaging, keyword-rich content, from blogs and landing pages to service descriptions, that drives
+          organic traffic, educates audiences, and converts visitors into leads.</p>
+      </div>
+      <div class="service-box">
+        <h3>Social Media Management</h3>
+        <p>I plan and manage content calendars, design posts, and write captions that align with your brand voice,
+          helping you grow engagement and build an active online community.</p>
+      </div>
+      <div class="service-box">
+        <h3>Keyword Research & Intent Mapping</h3>
+        <p> I uncover high-intent, semantically related keywords that match your audience’s needs, helping your content
+          get discovered by the right people at the right time.</p>
+      </div>
+      <div class="service-box">
+        <h3>SEO Audits & Optimization</h3>
+        <p>I perform full-site audits to fix technical issues, improve page speed, and enhance UX, all aimed at boosting
+          visibility, rankings, and conversions.</p>
+      </div>
+      <div class="service-box">
+        <h3>Brand Messaging & Online Presence</h3>
+        <p>I help define a clear, consistent brand voice and build a strong online presence, so your audience knows who
+          you are and why they should trust you.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact">
+    <h2>Contact Details</h2>
+    <p>Phone: 03326995277</p>
+    <p>Email: Areebatanveer606@gmail.com</p>
+  </section>
+
+  <script>
+    function toggleMenu() {
+      const nav = document.getElementById('nav-links');
+      nav.classList.toggle('active');
+    }
+
+    // Scroll Animation
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('show');
+        }
+      });
+    }, { threshold: 0.2 });
+
+    document.querySelectorAll('section, .exp-box, .service-box').forEach(el => observer.observe(el));
+  </script>
+</body>
+
+</html>
